@@ -2,11 +2,20 @@ function setup(){
 
 	noCanvas();
 
+
+function touchStarted(start) {
+  if (getAudioContext().state !== 'running') {
+    getAudioContext().resume();
+  }
+}
+
 	let lang = navigator.language || 'en-US';
 
 	let speechRec = new p5.SpeechRec(lang, gotSpeech);
 
-	speechRec.start();
+	function start(){
+		speechRec.start();
+	}
 
 	function gotSpeech(){
 
@@ -21,8 +30,3 @@ function setup(){
 
 
 
-function touchStarted() {
-  if (getAudioContext().state !== 'running') {
-    getAudioContext().resume();
-  }
-}
