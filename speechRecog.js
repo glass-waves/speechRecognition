@@ -1,32 +1,40 @@
-function setup(){
+var myRec = new p5.SpeechRec('en-US', parseResult); // new P5.SpeechRec object
+	myRec.continuous = true; // do continuous recognition
+	myRec.interimResults = true; // allow partial recognition (faster, less accurate)
 
-	noCanvas();
+	var x, y;
+	var dx, dy;
 
+	var socket;
 
-function touchStarted(start) {
-  if (getAudioContext().state !== 'running') {
-    getAudioContext().resume();
-  }
-}
+	function setup()
+	{
+		// graphics stuff:
+		createCanvas(800, 600);
+		background(255, 255, 255);
 
-	let lang = navigator.language || 'en-US';
+		// instructions:
+		textSize(48);
+		textAlign(CENTER);
 
-	let speechRec = new p5.SpeechRec(lang, gotSpeech);
+		myRec.start(); // start engine
 
-	function start(){
-		speechRec.start();
+		// client-side socket.io:
+		socket = io();
+
+		noLoop();
 	}
 
-	function gotSpeech(){
+	function draw()
+	{
 
-		if(speechRec.resultValue){
+	}
 
-			createP(speechRec.resultString);
-		}
-
-			}
-
-}
-
-
-
+	function parseResult()
+	{
+		// recognition system will often append words into phrases.
+		var res = myRec.resultString;
+		background(255);
+		text(res, width/2, height/2);
+		socket.emit('result', { 'word': res });
+	}
