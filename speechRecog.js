@@ -22,7 +22,7 @@ function setup(){
 
 
 function touchStarted() {
-
-  getAudioContext().resume();
-
+  if (getAudioContext().state !== 'running') {
+    getAudioContext().resume();
+  }
 }
