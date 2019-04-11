@@ -10,8 +10,12 @@ function setup(){
 
 	function gotSpeech(){
 
-		console.log(speechRec);
-	}
+		if(speechRec.resultValue){
+
+			createP(speechRec.resultString);
+		}
+
+			}
 
 }
 
