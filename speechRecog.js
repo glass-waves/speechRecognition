@@ -17,8 +17,8 @@ function setup(){
 
 
 
-// function touchStarted() {
+function touchStarted() {
 
-//   getAudioContext().resume();
+  getAudioContext().resume();
 
-// }
+}
