@@ -21,7 +21,7 @@
 
 
 		// graphics stuff:
-		createCanvas(800, 600);
+		createCanvas(windowWidth, windowHeight);
 		background(255, 255, 255);
 
 		// instructions:
@@ -46,14 +46,14 @@
 		// recognition system will often append words into phrases.
 		var res = myRec.resultString;
 		background(255);
-		text(res, width/2, height/2);
+		text(res, width/2+(random(-100,100)), height/2+(random(-100,100)));
 		socket.emit('result', { 'word': res });
 	}
 
 
-	function touchStarted() {
+	// function touchStarted() {
 
- 		 getAudioContext().resume()
+ // 	 getAudioContext().resume()
 
 </script>
 </head>
